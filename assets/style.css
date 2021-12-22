@@ -26,8 +26,10 @@ textarea{
 }
 
 .time-block{
-  text-align: center;
+  text-align: left;
   border-radius: 15px;
+  display:flex;
+  align-items: center;
 }
 
 .row {
@@ -61,6 +63,7 @@ textarea{
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  height: 100%
   background-color: #06AED5;
   color: white;
 }
