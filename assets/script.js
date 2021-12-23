@@ -1,57 +1,69 @@
 //DOM references
 var today = document.getElementById("currentDay")
-//var saveEl =document.querySelectorAll(".saveBtn")
-//var eventEl =document.querySelectorAll("textarea")
-// hourEl = document.querySelectorAll(".hour")
-//var timeBlockEl = document.querySelectorAll(".time-block")
-
 
 //global variables
+var events = {}
+var savedEvents;
 
 // look up jquery objects again lol
-$(document).ready(function(){
+$(document).ready(function () {
 
-saveEvent()
-// interval function for day, time display
-setInterval(function() {
-    today.innerText= moment().format("dddd MMM Do YYYY, h:mm a" )
-}, 1000)
+    // get items from localStorage if any
+    //$(".hour textarea").localStorage.getItem(eventTime, event)
 
-// interval for hour auditing
-setInterval(auditEvent(), 1000)
+    // interval function for day, time display
+    setInterval(function () {
+        today.innerText = moment().format("dddd MMM Do YYYY, h:mm a")
+    }, 1000)
 
-// auditing function 
-function auditEvent() {
+    // interval for hour/event auditing
+    setInterval(auditEvent(), 1000)
 
-    // get current hour
-    var time = moment().hours()
-   // says undefined
+    // auditing function 
+    function auditEvent() {
 
-  // loop over each hourel i dont think this works***
-    $(".hour").each(function() {
-        var hour = parseInt($(this).attr("id"))
+        // get current hour
+        var time = moment().hours()
 
-    //  if event has passed
-    if (hour < time) { /// not working 
-        $("textarea").attr( "class", "past")
-    }
-    // if it is the current hour of event 
-    if (hour === time) {
-        $("textarea").attr( "class", "present")
+        // loop over each hour element
+        $(".hour").each(function () {
+            var hour = parseInt($(this).attr("id"))
 
-    }
-    // if you still have some time before the event
-    else if (hour > time) {
-        $("textarea").attr( "class", "future")
+            //  if event has passed
+            if (hour < time) { /// not working 
+                $("textarea").attr("class", "past")
+            }
+            // if it is the current hour of event 
+            if (hour === time) {
+                $("textarea").attr("class", "present")
+
+            }
+            // if you still have some time before the event
+            else if (hour > time) {
+                $("textarea").attr("class", "future")
+            }
+
+        })
     }
 
 })
-}
 
-})
+// draggable ul
+// drag textarea to different timeblock div
+// other ones sorted
+// must save with button
+//text changes?
 
-// save to storage event listener 
-function saveEvent () {
+// save to localstorage /// do this and draggable UL thursday and submit
+function saveEvent() {
+    var eventTime = $(this).siblings(".hour")
+    var event = $(this).siblings("textarea").val()
+
+    var toDo = {
+
+    }
+
+    localStorage.setItem(eventTime, event)
 
 }
 
