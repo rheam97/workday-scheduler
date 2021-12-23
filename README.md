@@ -20,7 +20,13 @@ THEN the saved events persist
     //use moment to display textcontent for element for current day
 //separate divs for time blocs for 9-5 in html
     //use moment to audit blocks to set class attributes for past present and future
-//.onclick for time block div to input changes or new events (<textarea> in html)
+    //as hour hits, read hour div 
+    //find textarea sibling
+    // change textarea background to red
+    //as time passes
+    // change textarea background to gray
+    //as there is a certain difference of time before 
+    //change textarea background to green
 //ability to change the input and save with click of button
 //click saves event to local storage for broswer to get after refresh
 //click out and blur out of task (optional)
