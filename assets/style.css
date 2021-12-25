@@ -36,7 +36,7 @@ textarea{
   position: relative;
 }
 
-.row { /* dont know what this is for*/
+.row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;;
