@@ -1,61 +1,54 @@
 //DOM references
 var today = document.getElementById("currentDay")
 
-//global variables
-//var events = {}
-//var savedEvents;
+// get items from localStorage if any
+function loadEvents() {
+    $(".hour").each(function () {
+        var timing = $(this).text()
+        var plan = localStorage.getItem(timing)
 
-$(document).ready(function () {
-
-    // get items from localStorage if any
-    function loadEvents() {
-        $(".hour").each(function(){
-            var timing = $(this).text()
-            var plan= localStorage.getItem(timing)
-
-            if (plan !== null) {
+        if (plan !== null) {
             $(this).siblings(".listgroup").children("textarea").val(plan)
-            }
-        })
-       
-    }
+        }
+    })
 
-    // interval function for day, time display
-    setInterval(function () {
-        today.innerText = moment().format("dddd MMM Do YYYY, h:mm a")
-    }, 1000)
+}
 
-    // interval for hour/event auditing
-    setInterval(auditEvent(), 1000)
+// interval function for day, time display
+setInterval(function () {
+    today.innerText = moment().format("dddd MMM Do YYYY, h:mm a")
+}, 1000)
 
-    // auditing function 
-    function auditEvent() {
+// interval for hour/event auditing
+setInterval(auditEvent, 1000)
 
+// auditing function 
+function auditEvent() {
+
+    // loop over each hour element
+    $(".hour").each(function () {
+        // turn id into number to compare to current hour
+        var hour = parseInt($(this).attr("id"))
         // get current hour
         var time = moment().hours()
 
-        // loop over each hour element
-        $(".hour").each(function () {
-            var hour = parseInt($(this).attr("id"))
+        //  if event has passed
+        if (hour > time) { /// not working 
+            $(this).siblings(".listgroup").children("textarea").addClass("future")
+        }
+        // if it is the current hour of event 
+        else if (hour === time) {
+            $(this).siblings(".listgroup").children("textarea").addClass("present")
 
-            //  if event has passed
-            if (hour < time) { /// not working 
-                $("textarea").attr("class", "past")
-            }
-            // if it is the current hour of event 
-            if (hour === time) {
-                $("textarea").attr("class", "present")
+        }
+        // if you still have some time before the event
+        else {
 
-            }
-            // if you still have some time before the event
-            else if (hour > time) {
-                $("textarea").attr("class", "future")
-            }
+            $(this).siblings(".listgroup").children("textarea").addClass("past")
+        }
 
-        })
-    }
-loadEvents()
-})
+    })
+}
 
 // draggable ul
 // drag textarea to different timeblock div
@@ -64,22 +57,23 @@ loadEvents()
 // must save with button
 //text changes?
 
-$(".time-block .listgroup").sortable({
-    connectWith: $(".time-block .listgroup"),
+$(".container").sortable({
+    connectWith: $(".container"),
     items: "> textarea",
     placeholder: "highlight",
-    //helper: "clone",
-    update: function(event){
-    var changeArr= []
-    $(this).each(function(){
-        changeArr.push({
-            text: $(this)
-            .find("textarea")
-            .val()
+    helper: "clone",
+    update: function (event) {
+        var changeArr = []
+        $(".listgroup").each(function () {
+            changeArr.push({
+                text: $("listgroup")
+                    .children()
+                    .find("textarea")
+                    .val()
+            })
         })
-    })
-    // update on localstorage object and save and get on page refresh
-    saveEvent()
+        // update on localstorage object and save and get on page refresh
+        saveEvent()
     }
 })
 
@@ -94,3 +88,4 @@ function saveEvent() {
 
 // save button event listener
 $(".saveBtn").on("click", saveEvent)
+loadEvents()
