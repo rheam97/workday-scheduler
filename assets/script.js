@@ -2,25 +2,23 @@
 var today = document.getElementById("currentDay")
 
 //global variables
-var events = {}
-var savedEvents;
+//var events = {}
+//var savedEvents;
 
 $(document).ready(function () {
 
+    // get items from localStorage if any
     function loadEvents() {
         $(".hour").each(function(){
             var timing = $(this).text()
-           var plan= localStorage.getItem(timing)
+            var plan= localStorage.getItem(timing)
 
             if (plan !== null) {
-                
+            $(this).siblings(".listgroup").children("textarea").val(plan)
             }
         })
        
     }
-    // get items from localStorage if any
-    // create null and not null condition
-    //$(".hour textarea").localStorage.getItem(eventTime, event)
 
     // interval function for day, time display
     setInterval(function () {
@@ -70,17 +68,18 @@ $(".time-block .listgroup").sortable({
     connectWith: $(".time-block .listgroup"),
     items: "> textarea",
     placeholder: "highlight",
-    helper: "clone",
+    //helper: "clone",
     update: function(event){
     var changeArr= []
     $(this).each(function(){
         changeArr.push({
             text: $(this)
             .find("textarea")
-            .text()
+            .val()
         })
     })
     // update on localstorage object and save and get on page refresh
+    saveEvent()
     }
 })
 
