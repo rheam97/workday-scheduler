@@ -32,7 +32,7 @@ function auditEvent() {
         // get current hour
         var time = moment().hours()
 
-        //  if event has passed
+        // if you still have some time before the event     
         if (hour > time) { /// not working 
             $(this).siblings(".listgroup").children("textarea").addClass("future")
         }
@@ -41,7 +41,7 @@ function auditEvent() {
             $(this).siblings(".listgroup").children("textarea").addClass("present")
 
         }
-        // if you still have some time before the event
+        //  if event has passed
         else {
 
             $(this).siblings(".listgroup").children("textarea").addClass("past")
@@ -57,25 +57,15 @@ function auditEvent() {
 // must save with button
 //text changes?
 
-$(".container").sortable({
-    connectWith: $(".container"),
-    items: "> textarea",
-    placeholder: "highlight",
-    helper: "clone",
-    update: function (event) {
-        var changeArr = []
-        $(".listgroup").each(function () {
-            changeArr.push({
-                text: $("listgroup")
-                    .children()
-                    .find("textarea")
-                    .val()
-            })
-        })
-        // update on localstorage object and save and get on page refresh
-        saveEvent()
-    }
-})
+//$(".time-block .listgroup").sortable({
+   // connectWith: $(".time-block .listgroup"),
+  //  items: $("textarea"),
+  //  placeholder: "highlight",
+   // helper: "clone"
+//})
+
+// update on localstorage object and save and get on page refresh
+//saveEvent()
 
 // save to localstorage /// do this and draggable UL thursday and submit
 function saveEvent() {

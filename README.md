@@ -1,4 +1,19 @@
 # Work Day Scheduler Starter Code
+# Table of Contents
+* [Project Description](#project-description)
+* [How I Made It](#how-i-made-it)
+* [Usage](#Usage)
+* [URL](#URL)
+
+<a name= "projectdescription"></a>
+## Project Description
+
+Create a simple calendar application that allows a user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery and Moment.js.
+
+
+### Acceptance Criteria
+
+```
 GIVEN I am using a daily planner to create a schedule
 WHEN I open the planner
 THEN the current day is displayed at the top of the calendar
@@ -12,25 +27,26 @@ WHEN I click the save button for that time block
 THEN the text for that event is saved in local storage
 WHEN I refresh the page
 THEN the saved events persist
-//page loads
-//current day is displayed at the top possibly clock at the top
-    //setInterval to go every thousand ms: format hours, min, sec in interval
-    //create html element for current day
-    //select it or get element id in js
-    //use moment to display textcontent for element for current day
-//separate divs for time blocs for 9-5 in html
-    //use moment to audit blocks to set class attributes for past present and future
-    //as hour hits, read hour div 
-    //find textarea sibling
-    // change textarea background to red
-    //as time passes
-    // change textarea background to gray
-    //as there is a certain difference of time before 
-    //change textarea background to green
-//ability to change the input and save with click of button
-//click saves event to local storage for broswer to get after refresh
-//click out and blur out of task (optional)
-//draggable option? to reschedule?
-    //if you were to do this, nest task input in time block div inside another div with ul
-    //tasks would b li
-    //attach classes to this instead of time block (maybe set another interval timer)
+```
+<a name="howimadeit"></a>
+## How I Made It
+
+I started by using moment and attachged it to the element with the id "currentday" and formatetd the text to show the day of the week, date, and time. This is seyt to an interval so that it shows every minute change in the page. I also made new HTML elements for each timeblock and text input. I put the text inputs inside a ul because I wanted to experiment with sortable UI in jequery, but I wasn't able to get advice or help on it before the break started or before the due date. I plan on going back and fixing this so that the textareas can be sorted in case events need to be rearranged throughout the day. I made each time-block auditable by parsing the id attribute for every "hour" div and comparing that to the current time in hours using moment. I then attached classes to each textarea next to each hour div depending on whether or not they fell in the past, present hour, or future. I added an event listener to the save button so that it would save the textarea and time in an object in local storage. This can be retreived with every page refresh or load. 
+
+<a name="usage"></a>
+## Usage
+
+Here is how the app looks and functions: 
+![app function](workdayscheduler.gif)
+
+
+<a name="URL"></a>
+## URL
+
+* The URL of the deployed application: 
+* The URl of the repo: 
+
+- - -
+
+
+
