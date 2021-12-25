@@ -54,6 +54,22 @@ $(document).ready(function () {
 // must save with button
 //text changes?
 
+$(".container .listgroup").sortable({
+    connectWith: $(".time-block .listgroup"),
+    tolerance: "pointer",
+    items: "> textarea",
+    helper: "clone",
+  activate: function(event, ui) {
+    //$(this).addClass("dropover");
+    //$(".bottom-trash").addClass("bottom-trash-drag");
+  },
+  deactivate: function(event, ui) {
+    //$(this).removeClass("dropover");
+    //$(".bottom-trash").removeClass("bottom-trash-drag");
+  },
+
+})
+
 // save to localstorage /// do this and draggable UL thursday and submit
 function saveEvent() {
     var eventTime = $(this).siblings(".hour")
