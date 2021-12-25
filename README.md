@@ -44,7 +44,7 @@ Here is how the app looks and functions:
 ## URL
 
 * The URL of the deployed application: https://rheam97.github.io/workday-scheduler/
-* The URl of the repo: https://github.com/rheam97/workday-scheduler.git
+* The URL of the repo: https://github.com/rheam97/workday-scheduler.git
 
 - - -
 
