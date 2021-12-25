@@ -5,10 +5,21 @@ var today = document.getElementById("currentDay")
 var events = {}
 var savedEvents;
 
-// look up jquery objects again lol
 $(document).ready(function () {
 
+    function loadEvents() {
+        $(".hour").each(function(){
+            var timing = $(this).text()
+           var plan= localStorage.getItem(timing)
+
+            if (plan !== null) {
+                
+            }
+        })
+       
+    }
     // get items from localStorage if any
+    // create null and not null condition
     //$(".hour textarea").localStorage.getItem(eventTime, event)
 
     // interval function for day, time display
@@ -45,39 +56,38 @@ $(document).ready(function () {
 
         })
     }
-
+loadEvents()
 })
 
 // draggable ul
 // drag textarea to different timeblock div
 // other ones sorted
+//update
 // must save with button
 //text changes?
 
-$(".container .listgroup").sortable({
+$(".time-block .listgroup").sortable({
     connectWith: $(".time-block .listgroup"),
-    tolerance: "pointer",
     items: "> textarea",
+    placeholder: "highlight",
     helper: "clone",
-  activate: function(event, ui) {
-    //$(this).addClass("dropover");
-    //$(".bottom-trash").addClass("bottom-trash-drag");
-  },
-  deactivate: function(event, ui) {
-    //$(this).removeClass("dropover");
-    //$(".bottom-trash").removeClass("bottom-trash-drag");
-  },
-
+    update: function(event){
+    var changeArr= []
+    $(this).each(function(){
+        changeArr.push({
+            text: $(this)
+            .find("textarea")
+            .text()
+        })
+    })
+    // update on localstorage object and save and get on page refresh
+    }
 })
 
 // save to localstorage /// do this and draggable UL thursday and submit
 function saveEvent() {
-    var eventTime = $(this).siblings(".hour")
-    var event = $(this).siblings("textarea").val()
-
-    var toDo = {
-
-    }
+    var eventTime = $(this).siblings(".hour").text()
+    var event = $(this).siblings(".listgroup").children("textarea").val()
 
     localStorage.setItem(eventTime, event)
 
