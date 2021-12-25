@@ -1,3 +1,7 @@
+* {
+box-sizing: border-box;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -26,11 +30,13 @@ textarea{
 }
 
 .time-block{
-  text-align: center;
+  text-align: left;
   border-radius: 15px;
+  display:flex;
+  position: relative;
 }
 
-.row {
+.row { /* dont know what this is for*/
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;;
@@ -40,6 +46,13 @@ textarea{
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
+  width: 100%;
+  text-align: center;
+  padding: 40px 0 0 0;
+}
+
+.listgroup {
+  padding: 0;
 }
 
 .past {
