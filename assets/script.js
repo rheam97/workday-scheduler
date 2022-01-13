@@ -57,12 +57,12 @@ function auditEvent() {
 // must save with button
 //text changes?
 
-//$(".time-block .listgroup").sortable({
-   // connectWith: $(".time-block .listgroup"),
-  //  items: $("textarea"),
-  //  placeholder: "highlight",
-   // helper: "clone"
-//})
+// $(".time-block .listgroup").sortable({
+//     connectWith: $(".time-block .listgroup"),
+//     items: $("textarea"),
+//     placeholder: "highlight",
+//     helper: "clone"
+// })
 
 // update on localstorage object and save and get on page refresh
 //saveEvent()
